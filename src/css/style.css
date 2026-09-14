@@ -1,0 +1,26 @@
+/* * {
+  font-family:;
+} */
+
+main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-match-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 500px;
+}
+#search-match-input {
+  height: 40px;
+  border-radius: 15px;
+  border: 2px solid rgb(151, 62, 151);
+}
+#search-match-button {
+  border-radius: 15px;
+  height: 40px;
+}
