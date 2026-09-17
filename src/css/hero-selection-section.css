@@ -1,0 +1,17 @@
+#choose-hero-text {
+  font-size: 54px;
+  text-align: center;
+}
+#radiant-header {
+  color: #65d446;
+}
+#dire-header {
+  color: #d44646;
+}
+#radiant-heroes {
+  display: flex;
+}
+
+#dire-heroes {
+  display: flex;
+}

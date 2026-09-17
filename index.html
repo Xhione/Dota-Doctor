@@ -5,19 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dota Doctor- DoDo</title>
     <link rel="stylesheet" href="/src/css/style.css" />
+    <link rel="stylesheet" href="/src/css/hero-selection-section.css" />
   </head>
   <body>
     <header></header>
     <main>
-      <div class="search-match-container">
-        <input
-          class="input"
-          id="search-match-input"
-          type="text"
-          placeholder="Введи ID матчу сюди"
-        />
-        <button class="search-button" id="search-match-button">Пошук</button>
-      </div>
+      <section id="match-search-section">
+        <div class="search-match-container">
+          <input
+            class="input"
+            id="search-match-input"
+            type="text"
+            placeholder="Введи ID матчу сюди"
+          />
+          <button class="search-button" id="search-match-button">Пошук</button>
+        </div>
+      </section>
+      <section id="hero-selection-section" hidden>
+        <p id="choose-hero-text">Оберіть герооя на якому ви іграли</p>
+        <h3 id="radiant-header">СИЛИ СВІТЛА</h3>
+        <div id="radiant-heroes"></div>
+        <h3 id="dire-header">СИЛИ ТЬМИ</h3>
+        <div id="dire-heroes"></div>
+      </section>
+      <section id="match-details-section" hidden></section>
     </main>
     <footer></footer>
     <script type="module" src="/src/js/controller.js"></script>

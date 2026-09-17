@@ -1,40 +1,66 @@
 import express from "express";
-import "dotenv/config";
-const app = express();
+import cors from "cors";
 
+const app = express();
+const PORT = 3000;
+app.use(cors());
 app.use(express.json());
 
+app.get("/api/heroes", async (req, res) => {
+  try {
+    const response = await fetch("https://api.opendota.com/api/heroStats");
+
+    if (!response.ok) {
+      return res.status(response.status).json({
+        error: "OpenDota heroes request failed",
+        status: response.status,
+      });
+    }
+
+    const data = await response.json();
+
+    return res.json(data);
+  } catch (error) {
+    console.error("Heroes error:", error);
+
+    return res.status(500).json({
+      error: "Failed to load heroes",
+    });
+  }
+});
 app.post("/api/match", async (req, res) => {
-  const { matchId } = req.body;
-  //   console.log(matchId);
-  const response = await fetch("https://api.stratz.com/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.STRATZ_TOKEN}`,
-    },
-    body: JSON.stringify({
-      query: `
-      query GetMatch($id: Long!) {
-        match(id: $id) {
-          id
-          durationSeconds
-          didRadiantWin
-        }
-      }
-    `,
+  try {
+    const { matchId } = req.body;
 
-      variables: {
-        id: Number(matchId),
-      },
-    }),
-  });
+    if (!matchId) {
+      return res.status(400).json({
+        error: "Match ID is required",
+      });
+    }
 
-  return res.json(response);
+    const response = await fetch(
+      `https://api.opendota.com/api/matches/${matchId}`,
+    );
+
+    if (!response.ok) {
+      return res.status(response.status).json({
+        error: "OpenDota request failed",
+        status: response.status,
+      });
+    }
+
+    const data = await response.json();
+
+    return res.json(data);
+  } catch (error) {
+    console.error("Server error:", error);
+
+    return res.status(500).json({
+      error: "Internal server error",
+    });
+  }
 });
 
-const PORT = 3000;
-
 app.listen(PORT, () => {
-  console.log("Server running on port 3000!");
+  console.log(`Server running on port ${PORT}!`);
 });
