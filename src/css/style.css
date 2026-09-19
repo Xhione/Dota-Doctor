@@ -30,3 +30,21 @@ main {
   border-radius: 15px;
   height: 40px;
 }
+
+.hero-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  border-radius: 23px;
+  border: 5px solid black;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.hero-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+.hero-img {
+  border-radius: 15px;
+}

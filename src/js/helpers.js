@@ -25,8 +25,9 @@ export function sortHeroesByTeam(matchedHeroes) {
 export function renderCards(team, container) {
   const cards = team
     .map((player) => {
-      return `<div>
-      <img src = "https://cdn.cloudflare.steamstatic.com${player.hero.img}" class ="${container}"/>
+      return `<div class ="hero-box"
+      data-player-slot ="${player.player.player_slot}">
+      <img src = "https://cdn.cloudflare.steamstatic.com${player.hero.img}" class="hero-img" />
       <p class ="hero-name-${container}"> ${player.hero.localized_name}</p>
       <p class = "player-name-${container}">Нік : ${player.player.personaname}</p>
     </div>`;
